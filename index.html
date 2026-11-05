@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raghavendra & Pallavi | A Wedding Celebration</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+  <style>
+    :root {
+      box-sizing: border-box;
+      --dk: #1a1412; --dk2: #33171b; --gold: #c9a45c; 
+      --lt: #f1ece3; --lt2: #fbf9f4; --ink: #1c1714; 
+      --mu: #7a6e66; --ln: #d9cdb8;
+    }
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; background: var(--lt); color: var(--ink); 
+      font: 300 15px/1.7 Jost, system-ui, sans-serif; text-align: center; 
+      overflow-x: hidden;
+    }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; margin: 0; text-transform: uppercase; }
+    section { padding: 96px 22px; }
+    .in { max-width: 1000px; margin: 0 auto; }
+    .dk { background: var(--dk); color: #f1e8da; }
+    .cr2 { background: var(--lt2); }
+    .eb { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); }
+    h2 { font-size: clamp(36px, 6vw, 60px); letter-spacing: .12em; margin: 14px 0 10px; }
+    .dv { width: 36px; height: 1px; background: var(--gold); margin: 14px auto 34px; position: relative; }
+    .dv::after { content: "✦"; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); font-size: 10px; color: var(--gold); background: var(--lt); padding: 0 6px; }
+    .dk .dv::after { background: var(--dk); }
+    .cr2 .dv::after { background: var(--lt2); }
+
+    /* Hero */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 50px 20px; background: radial-gradient(ellipse at 50% 30%, #3a1d20 0, transparent 60%), var(--dk); }
+    .hero::before { content: ""; position: absolute; inset: 40px 26px; border: 1px solid #c9a45c55; pointer-events: none; }
+    .arch { width: min(520px, 88vw); border: 1px solid #c9a45c88; border-bottom: 0; border-radius: 260px 260px 0 0; padding: 70px 24px 64px; position: relative; z-index: 2; }
+    .gn { color: var(--gold); font-size: 13px; letter-spacing: .12em; margin-bottom: 18px; }
+    .nm { font: 400 clamp(50px, 10vw, 80px)/1 "Great Vibes", cursive; text-transform: none; color: #d9b772; }
+    .nm em { display: block; font: italic 14px "Cormorant Garamond", serif; letter-spacing: .5em; color: var(--gold); margin: 8px 0; text-transform: lowercase; }
+    .sub { font: italic 22px "Cormorant Garamond", serif; color: var(--gold); margin: 14px 0 8px; text-transform: none; }
+    .arch p { color: #c8b8a6; font: italic 17px/1.5 "Cormorant Garamond", serif; max-width: 300px; margin: 0 auto; text-transform: none; }
+    .hd { letter-spacing: .35em; font-size: 13px; margin-top: 26px; font-weight: 500; }
+    .pl { letter-spacing: .3em; font-size: 10px; color: #9d8e7e; margin-top: 8px; line-height: 1.5; padding: 0 10px; }
+
+    /* Story */
+    .big { font-size: clamp(34px, 6.4vw, 70px); line-height: 1.15; letter-spacing: .04em; color: var(--mu); opacity: .8; text-transform: uppercase; }
+    .cap { letter-spacing: .2em; font-size: 12px; text-transform: uppercase; color: var(--mu); margin: 34px auto 50px; max-width: 420px; }
+    .sg { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; text-align: left; max-width: 860px; margin: 0 auto; }
+    .sg p { margin: 0 0 16px; color: var(--mu); font: 400 19px/1.7 "Cormorant Garamond", serif; }
+    .sg img { width: 100%; border-radius: 400px 400px 0 0; border: 1px solid var(--gold); aspect-ratio: 4/5; object-fit: cover; }
+
+    /* --- BUTTERY SMOOTH SCROLLING CELEBRATIONS --- */
+    .hs { padding: 0; position: relative; } /* height injected by JS */
+    .pin { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-top: 40px; }
+    .cards { display: flex; gap: 24px; padding: 10px 5vw; will-change: transform; width: max-content; }
+    
+    .card { flex: 0 0 min(320px, 76vw); text-align: center; background: var(--lt2); border: 1px solid var(--ink); padding: 10px; }
+    .card .ii { border: 1px solid var(--ln); padding: 16px 16px 26px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
+    .card img { display: block; width: 100%; aspect-ratio: 1/1.1; object-fit: cover; border-radius: 999px 999px 0 0; border: 1px solid var(--gold); }
+    .card small { display: block; color: var(--gold); letter-spacing: .3em; font-size: 11px; margin: 20px 0 4px; }
+    .card h3 { font-size: 30px; letter-spacing: .08em; }
+    .card .t { font-size: 11px; letter-spacing: .25em; font-weight: 500; margin-top: auto; padding-top: 12px; text-transform: uppercase; }
+
+    /* Invitation Details */
+    .iv { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; text-align: left; max-width: 1100px; margin: 0 auto; }
+    .iv h2 { font-size: clamp(50px, 9vw, 104px); letter-spacing: .06em; line-height: 1; margin: 0 0 34px; color: #f1e8da; }
+    .iv .tg { letter-spacing: .3em; font-size: 11px; color: #9d8e7e; text-transform: uppercase; }
+    .iv h3 { font-size: clamp(26px, 4vw, 40px); letter-spacing: .06em; margin: 14px 0; }
+    .iv h3 b { color: var(--gold); font-weight: 400; font-family: 'Jost', sans-serif; }
+    
+    .tk { background: var(--dk2); border: 1px solid var(--gold); outline: 1px solid #c9a45c55; outline-offset: -9px; text-align: center; }
+    .tk .top { padding: 34px 20px 26px; border-bottom: 1px solid #c9a45c55; }
+    .tk .top small { letter-spacing: .3em; font-size: 11px; color: #9d8e7e; }
+    .tk .top h3 { font-size: clamp(30px, 4vw, 44px); color: var(--gold); letter-spacing: .08em; line-height: 1.15; margin-top: 12px; font-family: "Cormorant Garamond", serif; }
+    .tk .top h3 b { font-family: "Great Vibes", cursive; font-size: 1.2em; text-transform: lowercase; }
+    .fl { font-size: 90px; color: var(--gold); padding: 18px 0; line-height: 1; border-bottom: 1px solid #c9a45c55; opacity: .85; }
+    
+    .tk .r { display: flex; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid #c9a45c44; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; text-align: left; }
+    .tk .r:last-child { border: 0; }
+    .tk .r span { color: #a89a8a; }
+    .tk .r b { font-weight: 500; text-align: right; color: #f1e8da; max-width: 60%; }
+
+    /* Wedding Details List */
+    .rows { max-width: 720px; margin: 0 auto; text-align: left; }
+    .rows div { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--ln); text-align: right; }
+    .rows small { letter-spacing: .3em; font-size: 11px; color: var(--mu); text-transform: uppercase; text-align: left; }
+    .rows span { font: 400 clamp(16px, 2.5vw, 24px) "Cormorant Garamond", serif; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Countdown */
+    .cdn { font-size: clamp(34px, 6vw, 58px); color: var(--gold); letter-spacing: .1em; margin: 10px 0 30px; }
+    .bx { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .bx div { width: 148px; padding: 34px 6px 26px; border: 1px solid #c9a45c44; border-radius: 12px; background: #ffffff08; }
+    .bx b { display: block; font: 400 54px/1 "Cormorant Garamond", serif; color: #f6efe4; }
+    .bx span { font-size: 10px; letter-spacing: .3em; color: var(--gold); }
+    
+    /* FAQ */
+    .fq { max-width: 690px; margin: 0 auto; text-align: left; border-top: 1px solid var(--ln); }
+    .fq details { border-bottom: 1px solid var(--ln); }
+    .fq summary { list-style: none; cursor: pointer; padding: 26px 0; letter-spacing: .2em; font-size: 11px; font-weight: 500; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+    .fq summary::-webkit-details-marker { display: none; }
+    .fq summary::after { content: "+"; color: var(--gold); font-size: 18px; }
+    .fq details[open] summary::after { content: "–"; }
+    .fq p { margin: 0 0 24px; color: var(--mu); font: 400 18px "Cormorant Garamond", serif; }
+
+    /* Form */
+    .fo { max-width: 520px; margin: 0 auto; text-align: left; }
+    .fo label { display: block; letter-spacing: .25em; font-size: 11px; color: var(--mu); text-transform: uppercase; margin: 26px 0 6px; }
+    .fo input, .fo select, .fo textarea { width: 100%; background: none; border: 0; border-bottom: 1px solid var(--gold); color: var(--ink); font: italic 18px "Cormorant Garamond", serif; padding: 8px 0; outline: 0; }
+    .fo textarea { border: 1px solid var(--gold); padding: 10px; height: 90px; margin-top: 10px;}
+    .btn { display: inline-block; margin-top: 34px; padding: 13px 30px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; letter-spacing: .25em; font-size: 11px; text-transform: uppercase; background: none; font-family: inherit; cursor: pointer; transition: .25s; width: 100%; }
+    .btn:hover { background: var(--gold); color: var(--dk); }
+
+    /* Footer */
+    footer { background: var(--dk2); color: #f1e8da; padding: 84px 20px; }
+    footer .nm { font-size: clamp(46px, 8vw, 70px); }
+    
+    @media (max-width: 760px) {
+      .sg, .iv { grid-template-columns: 1fr; }
+      .rows div { flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; }
+      section { padding: 70px 18px; }
+      .bx div { width: 42%; }
+      .sg img { order: -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero dk">
+    <div class="arch">
+      <div class="gn">॥ श्री गणेशाय नमः ॥</div>
+      <h1 class="nm">Raghavendra <em>and</em> Pallavi</h1>
+      <div class="sub">A Wedding Celebration</div>
+      <p>Come celebrate with us and make our special day truly memorable.</p>
+      <div class="gn" style="margin:20px 0 0">◆</div>
+      <div class="hd">15 NOVEMBER 2026</div>
+      <div class="pl">PBR CONVENTION HALL<br>NAGOLE, HYDERABAD</div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section id="story">
+    <div class="in">
+      <p class="eb">Our Story</p><div class="dv"></div>
+      <h2 class="big">Two stories.<br>Two families.<br>One beautiful beginning.</h2>
+      <p class="cap">From the moments that brought them together to the day they begin their next chapter.</p>
+      <div class="sg">
+        <img src="couple.jpg" alt="Raghavendra and Pallavi">
+        <div>
+          <p>It started with a chance meeting through mutual friends and a conversation neither of us wanted to end. A few messages soon became daily calls, long walks and endless cups of chai.</p>
+          <p>Somewhere between the laughter and the late nights, we realised we had found our home in each other.</p>
+          <p>With the blessings of our families, we’re ready to begin our forever, and we’d love for you to be part of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Celebrations: Buttery Smooth JavaScript Scroll -->
+  <section class="cr2 hs" id="celebrations">
+    <div class="pin">
+      <div class="in">
+        <p class="eb">07 EVENTS</p>
+        <h2>The Celebrations</h2>
+        <div class="dv" style="margin-bottom:26px"></div>
+      </div>
+      
+      <div class="cards" id="events">
+        <!-- Event 1 -->
+        
+        <!-- Event 2 -->
+        <div class="card">
+          <div class="ii">
+            <img src="haldi.jpg" alt="Haldi">
+            <small>01</small><h3>HALDI</h3>
+            <div class="t">14 NOV 2026 · 09:00 AM</div>
+          </div>
+        </div>
+        <!-- Event 3 -->
+        <div class="card">
+          <div class="ii">
+            <img src="MEHENDI.jpg" alt="Mehendi">
+            <small>02</small><h3>MEHENDI</h3>
+            <div class="t">14 NOV 2026 · 03:00 PM</div>
+          </div>
+        </div>
+        <!-- Event 4 -->
+        <div class="card">
+          <div class="ii">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=400&h=500" alt="Sangeet">
+            <small>03</small><h3>SANGEET</h3>
+            <div class="t">14 NOV 2026 · 07:00 PM</div>
+          </div>
+        </div>
+        <!-- Event 5 (Main Wedding) -->
+        <div class="card">
+          <div class="ii">
+            <img src="WEDDING.jpg" alt="Wedding">
+            <small>04</small><h3>WEDDING</h3>
+            <div class="t">15 NOV 2026 · 10:16 AM</div>
+          </div>
+        </div>
+        <!-- Event 6 (Fixed Typography) -->
+        <div class="card">
+          <div class="ii">
+            <img src="SATYANARAYANA.jpg" alt="Satyanarayana Vratham">
+            <small>05</small><h3 style="font-size: 24px; line-height: 1.2; margin-top: 8px;">SATYANARAYANA<br>VRATHAM</h3>
+            <div class="t">16 NOV 2026 · 09:00 AM</div>
+          </div>
+        </div>
+        <!-- Event 7 -->
+        <div class="card">
+          <div class="ii">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400&h=500" alt="Reception">
+            <small>06</small><h3>RECEPTION</h3>
+            <div class="t">16 NOV 2026 · 07:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Invitation (Dark Section with Box) -->
+  <section class="dk" id="invitation">
+    <div class="iv">
+      <div>
+        <h2>The<br>Invitation</h2>
+        <p class="tg">Together with their families</p>
+        <h3 style="font-family: 'Great Vibes', cursive; text-transform: none;">Raghavendra <b>&</b> Pallavi</h3>
+        <p class="tg">invite you to celebrate their wedding.</p>
+      </div>
+      
+      <!-- Invitation Card Graphic -->
+      <div class="tk">
+        <div class="top">
+          <small>THE WEDDING OF</small>
+          <h3>RAGHAVENDRA<br><b>&</b> PALLAVI</h3>
+        </div>
+        <div class="fl">
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 20px auto; display: block;">
+            <path d="M12 2v20M17 5l-10 14M22 12H2M19 17L5 7"/>
+            <circle cx="12" cy="12" r="2" fill="var(--gold)"/>
+          </svg>
+        </div>
+        <div class="r">
+          <span>DATE</span><b>15 NOVEMBER 2026</b>
+        </div>
+        <div class="r">
+          <span>TIME</span><b>10:16 AM</b>
+        </div>
+        <div class="r">
+          <span>VENUE</span><b>PBR CONVENTION HALL</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section class="dk" id="countdown" style="border-top: 1px solid #c9a45c33;">
+    <div class="in">
+      <p class="eb">The day is near</p><div class="dv"></div>
+      <h2 class="cdn">15 NOVEMBER 2026</h2>
+      <div class="bx">
+        <div><b id="d">00</b><span>DAYS</span></div>
+        <div><b id="h">00</b><span>HOURS</span></div>
+        <div><b id="m">00</b><span>MINUTES</span></div>
+        <div><b id="s">00</b><span>SECONDS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wedding Details List (Restored) -->
+  <section class="cr2" id="details">
+    <div class="in">
+      <h2>Wedding Details</h2>
+      <div class="dv"></div>
+      
+      <div class="rows">
+        <div>
+          <small>Date</small>
+          <span>Sunday, 15 November 2026</span>
+        </div>
+        <div>
+          <small>Time</small>
+          <span>10:16 AM</span>
+        </div>
+        <div>
+          <small>Venue</small>
+          <span>PBR Convention Hall</span>
+        </div>
+        <div>
+          <small>Location</small>
+          <span style="font-size: clamp(14px, 2vw, 18px); max-width: 60%; line-height: 1.4;">Nagole to Bandlaguda Road, Nagole, Hyderabad</span>
+        </div>
+        <div>
+          <small>Dress Code</small>
+          <span>Indian Formal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section (Restored) -->
+  <section class="cr2" id="faq" style="padding-top: 0;">
+    <div class="in">
+      <h2>FAQs</h2>
+      <div class="dv"></div>
+      
+      <div class="fq">
+        <details>
+          <summary>WHEN SHOULD WE ARRIVE?</summary>
+          <p>Please arrive 30 minutes before the ceremony so you can be seated comfortably.</p>
+        </details>
+        <details>
+          <summary>IS THERE A DRESS CODE?</summary>
+          <p>Indian formal. Warm, festive colours are most welcome.</p>
+        </details>
+        <details>
+          <summary>IS PARKING AVAILABLE?</summary>
+          <p>Yes, there is complimentary parking at the convention hall.</p>
+        </details>
+        <details>
+          <summary>WHO SHOULD WE CONTACT?</summary>
+          <p>Please contact our family coordinator at the numbers provided on the formal invite.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="in">
+      <h2>RSVP</h2>
+      <div class="dv"></div>
+      <div class="fo">
+        <label>Full name *</label>
+        <input type="text" placeholder="Your full name">
+        <label>Number of guests (including you)</label>
+        <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+        <label>A message for the couple</label>
+        <textarea placeholder="Warm wishes or blessings…"></textarea>
+        <button class="btn" type="button">Submit RSVP</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="eb" style="color:#f1e8da">With love</p>
+    <div class="nm" style="font-family: 'Great Vibes', cursive; text-transform: none;">Raghavendra <span style="font-size:.5em;color:var(--gold)">&amp;</span> Pallavi</div>
+    <p style="letter-spacing: .2em; font-size: 11px; margin-top: 30px; opacity: 0.6;">15 NOVEMBER 2026</p>
+  </footer>
+
+  <script>
+    // --- Premium Smooth Scroll-Tied Gallery (Lerp) ---
+    const hs = document.getElementById("celebrations");
+    const tr = document.getElementById("events");
+    
+    let targetX = 0;
+    let currentX = 0;
+
+    function calcScrollHeight() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      // Add extra scroll space equal to the overflow width so pacing feels natural
+      const overflow = Math.max(0, tr.scrollWidth - window.innerWidth + 80);
+      hs.style.height = (window.innerHeight + overflow) + "px";
+      updateTarget();
+    }
+
+    function updateTarget() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      
+      const overflow = Math.max(0, tr.scrollWidth - window.innerWidth + 80);
+      const rect = hs.getBoundingClientRect();
+      const scrollableDistance = Math.max(1, hs.offsetHeight - window.innerHeight);
+      
+      let percentage = 0;
+      // Only calculate if the container is currently active in the viewport
+      if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+        percentage = -rect.top / scrollableDistance;
+      } else if (rect.top > 0) {
+        percentage = 0;
+      } else {
+        percentage = 1;
+      }
+      
+      targetX = -(percentage * overflow);
+    }
+
+    function renderLoop() {
+      // "Lerp" (Linear Interpolation) smooths out the mouse wheel jumping
+      // 0.08 acts as the "shock absorber" (lower = smoother/slower, higher = faster/snappier)
+      currentX += (targetX - currentX) * 0.08;
+      
+      // Only apply style if it's actually moving to save performance
+      if (Math.abs(targetX - currentX) > 0.1) {
+        tr.style.transform = `translateX(${currentX}px)`;
+      }
+      
+      requestAnimationFrame(renderLoop);
+    }
+
+    window.addEventListener("scroll", updateTarget, { passive: true });
+    window.addEventListener("resize", calcScrollHeight);
+    window.addEventListener("load", () => {
+      calcScrollHeight();
+      requestAnimationFrame(renderLoop);
+    });
+    calcScrollHeight();
+    requestAnimationFrame(renderLoop);
+
+    // --- Countdown Timer Logic ---
+    const weddingDate = new Date("2026-11-15T10:16:00").getTime();
+    function tick() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      
+      if (diff <= 0) {
+          document.getElementById("d").innerText = "00";
+          document.getElementById("h").innerText = "00";
+          document.getElementById("m").innerText = "00";
+          document.getElementById("s").innerText = "00";
+          return;
+      }
+      
+      document.getElementById("d").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
+      document.getElementById("h").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, "0");
+      document.getElementById("m").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, "0");
+      document.getElementById("s").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, "0");
+    }
+    setInterval(tick, 1000);
+    tick();
+  </script>
+</body>
+</html>
