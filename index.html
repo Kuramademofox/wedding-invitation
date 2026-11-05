@@ -53,6 +53,17 @@
     .pl { letter-spacing: .2em; font-size: 14px; color: #6b2631; line-height: 1.5; font-weight: 600; font-family: "Cormorant Garamond", serif; }
     .pl span { display: block; font-family: "Jost", sans-serif; font-size: 11px; letter-spacing: .25em; color: #8a6c31; margin-top: 4px; font-weight: 400;}
 
+    /* Scroll Indicator */
+    .scroll-indicator { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); text-align: center; animation: bounce 2s infinite; opacity: 0.7; z-index: 10; }
+    .scroll-indicator span { display: block; font-size: 10px; letter-spacing: .3em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .scroll-indicator svg { width: 20px; height: 20px; stroke: var(--gold); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-10px) translateX(-50%); }
+      60% { transform: translateY(-5px) translateX(-50%); }
+    }
+
     /* Story */
     .big { font-size: clamp(34px, 6.4vw, 70px); line-height: 1.15; letter-spacing: .04em; color: var(--mu); opacity: .8; text-transform: uppercase; }
     .cap { letter-spacing: .2em; font-size: 12px; text-transform: uppercase; color: var(--mu); margin: 34px auto 50px; max-width: 420px; }
@@ -157,6 +168,14 @@
         <div class="pl" style="font-size: 12px; margin-top: 8px; color: var(--ink); font-weight: 400; text-transform: none;">Nagole to Bandlaguda Road<br>Nagole, Hyderabad</div>
       </div>
     </div>
+    
+    <!-- Animated Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </div>
   </section>
 
   <!-- Our Story Section -->
@@ -186,7 +205,6 @@
       </div>
       
       <div class="cards" id="events">
-              
         <!-- Event 2 -->
         <div class="card">
           <div class="ii">
@@ -207,30 +225,17 @@
             <small>02</small><h3>HALDI</h3>
             <div class="event-details">
               <div class="t">14 NOV 2026 · 09:00 AM</div>
-              <div class="loc">PBR Convention Hall, Nagole</div>
+              <div class="loc">Groom's Residence, Hyderabad</div>
             </div>
           </div>
         </div>
         
-        <!-- Event 4 -->
-        <div class="card">
-          <div class="ii">
-            <img src="MEHENDI.jpg" alt="Mehendi" style="object-position: bottom;">
-            <small>03</small><h3>MEHENDI</h3>
-            <div class="event-details">
-              <div class="t">14 NOV 2026 · 03:00 PM</div>
-              <div class="loc">PBR Convention Hall, Nagole</div>
-            </div>
-          </div>
-        </div>
-        
-               
         <!-- Event 6 -->
         <div class="card">
           <div class="ii">
             <!-- Adjusted object-position to center for the wedding image -->
             <img src="WEDDING.jpg" alt="Wedding" style="object-position: center;">
-            <small>04</small><h3>WEDDING</h3>
+            <small>03</small><h3>WEDDING</h3>
             <div class="event-details">
               <div class="t">15 NOV 2026 · 10:16 AM</div>
               <div class="loc">PBR Convention Hall, Nagole</div>
@@ -242,7 +247,7 @@
         <div class="card">
           <div class="ii">
             <img src="SATYANARAYANA.jpg" alt="Satyanarayana Vratham" style="object-position: bottom;">
-            <small>05</small><h3 style="font-size: 20px;">SATYANARAYANA<br>VRATHAM</h3>
+            <small>04</small><h3 style="font-size: 20px;">SATYANARAYANA<br>VRATHAM</h3>
             <div class="event-details">
               <div class="t">16 NOV 2026 · 1:00 PM</div>
               <div class="loc">Groom's Residence, Hyderabad</div>
@@ -254,10 +259,10 @@
         <div class="card">
           <div class="ii">
             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400&h=500" alt="Reception" style="object-position: center;">
-            <small>06</small><h3>RECEPTION</h3>
+            <small>05</small><h3>RECEPTION</h3>
             <div class="event-details">
               <div class="t">17 NOV 2026 · 07:00 PM</div>
-              <div class="loc">PBR Convention Hall, Nagole</div>
+              <div class="loc">Nyra farms,Manneguda</div>
             </div>
           </div>
         </div>
@@ -378,12 +383,13 @@
       <div class="dv"></div>
       <div class="fo">
         <label>Full name *</label>
-        <input type="text" placeholder="Your full name">
-        <label>Number of guests (including you)</label>
-        <select><option>1</option><option>2</option><option>3</option><option>4</option></select>
+        <input type="text" id="rsvpName" placeholder="Your full name" required>
+        
         <label>A message for the couple</label>
-        <textarea placeholder="Warm wishes or blessings…"></textarea>
-        <button class="btn" type="button">Submit RSVP</button>
+        <textarea id="rsvpMessage" placeholder="Warm wishes or blessings…"></textarea>
+        
+        <!-- Modified Button -->
+        <button class="btn" type="button" id="submitRsvp">Submit RSVP via WhatsApp</button>
       </div>
     </div>
   </section>
@@ -396,6 +402,7 @@
   </footer>
 
   <script>
+    // --- Scroll Fade Animation ---
     document.addEventListener("DOMContentLoaded", () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -409,6 +416,7 @@
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     });
 
+    // --- Premium Smooth Scroll-Tied Gallery (Lerp) ---
     const hs = document.getElementById("celebrations");
     const tr = document.getElementById("events");
     
@@ -459,6 +467,7 @@
     calcScrollHeight();
     requestAnimationFrame(renderLoop);
 
+    // --- Countdown Timer Logic ---
     const weddingDate = new Date("2026-11-15T10:16:00").getTime();
     function tick() {
       const now = new Date().getTime();
@@ -479,6 +488,28 @@
     }
     setInterval(tick, 1000);
     tick();
+
+    // --- WhatsApp RSVP Logic ---
+    // IMPORTANT: Replace this with your actual WhatsApp number (include country code, no + or spaces)
+    const whatsappNumber = "917730981001"; 
+    
+    document.getElementById("submitRsvp").addEventListener("click", () => {
+      const name = document.getElementById("rsvpName").value.trim();
+      const message = document.getElementById("rsvpMessage").value.trim();
+      
+      if (!name) {
+        alert("Please enter your name so we know who is RSVPing!");
+        return;
+      }
+      
+      let text = `Hello! I would love to attend Raghavendra & Pallavi's wedding.\n\nName: ${name}`;
+      if (message) {
+        text += `\nMessage: ${message}`;
+      }
+      
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, "_blank");
+    });
   </script>
 </body>
 </html>
